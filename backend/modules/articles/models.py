@@ -1,8 +1,5 @@
 from django.conf import settings
 from django.db import models
-from modules.utils import get_options
-
-MEDIA_UPLOAD_PATH = get_options("django-articles", "MEDIA_UPLOAD_PATH")
 
 
 class Article(models.Model):
@@ -16,7 +13,7 @@ class Article(models.Model):
         on_delete=models.PROTECT,
         related_name="article_author",
     )
-    image = models.ImageField(upload_to=MEDIA_UPLOAD_PATH, blank=True, null=True)
+    image = models.ImageField(upload_to="mediafiles/articles/", blank=True, null=True)
     created_at = models.DateTimeField(
         auto_now_add=True,
     )
